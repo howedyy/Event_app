@@ -6,22 +6,27 @@ class CustomTextButton extends StatelessWidget {
   const CustomTextButton({super.key,
     required this.text,
     required this.onTap,
+    this.alignment = Alignment.center
   });
 final String text;
 final VoidCallback onTap;
+final Alignment alignment;
   @override
   Widget build(BuildContext context) {
-    return  GestureDetector(
-      onTap: onTap,
-        child: Text(text, style: GoogleFonts.inter(
-        fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: ColorsManager.blue,
-          decoration: TextDecoration.underline,
-          fontStyle: FontStyle.italic,
-          decorationColor: ColorsManager.blue,
-        ),
-        )
+    return  Container(
+      alignment: alignment,
+      child: GestureDetector(
+        onTap: onTap,
+          child: Text(text, style: GoogleFonts.inter(
+          fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: ColorsManager.blue,
+            decoration: TextDecoration.underline,
+            fontStyle: FontStyle.italic,
+            decorationColor: ColorsManager.blue,
+          ),
+          )
+      ),
     );
   }
 }

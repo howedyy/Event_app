@@ -43,6 +43,15 @@ class ThemeManager {
         )
       )
     ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        padding: REdgeInsets.symmetric(vertical: 16),
+        side: BorderSide(color: ColorsManager.blue, width: 1),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.r),
+        )
+      )
+    ),
     textTheme: TextTheme(
       bodySmall: GoogleFonts.inter(
         fontSize: 16.sp,
