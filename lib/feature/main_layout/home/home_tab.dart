@@ -1,7 +1,9 @@
 import 'package:event_app/core/resources/colors_manager.dart';
 import 'package:event_app/core/widgets/custom_tab_bar.dart';
 import 'package:event_app/core/widgets/custom_tab_item.dart';
+import 'package:event_app/core/widgets/event_item.dart';
 import 'package:event_app/models/catagory_model.dart';
+import 'package:event_app/models/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -57,13 +59,16 @@ class _HomeTabState extends State<HomeTab> {
                       ],
                     ),
                     Spacer(),
-                    Icon(Icons.light_mode, color: ColorsManager.white,),
+                    IconButton(onPressed: (){}, icon: Icon(Icons.light_mode, color: ColorsManager.white,)),
                     SizedBox(width: 10.w,),
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("En",
-                          style: Theme.of(context).textTheme.headlineMedium,
+                    InkWell(
+                      onTap: (){},
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("En",
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
                         ),
                       ),
                     ),
@@ -77,10 +82,16 @@ class _HomeTabState extends State<HomeTab> {
                    selectedFgColor: Theme.of(context).colorScheme.onPrimary,
                    unSelectedFgColor: Theme.of(context).colorScheme.onSecondary
                ),
+
+                //Expanded(child: ListView.builder(itemBuilder: (context, index)=> ,itemCount: 20,))
               ],
             ),
           ),
-        )
+        ),
+        Expanded(child: ListView.builder(
+          itemBuilder: (context, index)=>EventItem(
+          event: EventModel(title: "Meeting for Updating The Development Method", category: CategoryModel.categories[2], description: "description", dateTime: DateTime.now(), timeOfDay: TimeOfDay.now()),
+        ),itemCount: 20,))
       ],
     );
   }

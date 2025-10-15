@@ -14,6 +14,13 @@ class ThemeManager {
       secondary: Colors.transparent,
       onSecondary: ColorsManager.whiteBlue,
     ),
+    cardTheme: CardThemeData(
+      color: ColorsManager.whiteBlue,
+      elevation: 8,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.r)
+      )
+    ),
     scaffoldBackgroundColor: ColorsManager.whiteBlue,
     bottomAppBarTheme: BottomAppBarThemeData(
       color: ColorsManager.blue,
@@ -84,6 +91,11 @@ class ThemeManager {
       )
     ),
     textTheme: TextTheme(
+      titleSmall: GoogleFonts.inter(
+          fontSize: 14.sp,
+          fontWeight: FontWeight.bold,
+          color: ColorsManager.black
+      ),
       headlineSmall: GoogleFonts.inter(
           fontSize: 14.sp,
           fontWeight: FontWeight.w400,
