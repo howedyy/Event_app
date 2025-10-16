@@ -1,8 +1,10 @@
+import 'package:event_app/core/extensions/date_ext.dart';
 import 'package:event_app/core/resources/colors_manager.dart';
 import 'package:event_app/models/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class EventItem extends StatefulWidget {
   const EventItem({super.key, required  this.event});
@@ -13,7 +15,7 @@ final EventModel event;
 }
 
 class _EventItemState extends State<EventItem> {
-
+  //List<String> months = ["Jan","Feb","Mar","Apr","May","Jun","jul","Aug","Sep","Oct","Nov","Dec"];
   bool favorite = false;
   @override
   Widget build(BuildContext context) {
@@ -40,14 +42,14 @@ class _EventItemState extends State<EventItem> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("21",
+                  Text(widget.event.dateTime.viewDayNumber,
                     style: GoogleFonts.inter(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
                         color: ColorsManager.blue
                     ),
                   ),
-                  Text("Nov",
+                  Text( widget.event.dateTime.viewMonthName,
                     style: GoogleFonts.inter(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.bold,
@@ -84,4 +86,5 @@ class _EventItemState extends State<EventItem> {
       ),
     );
   }
+
 }
