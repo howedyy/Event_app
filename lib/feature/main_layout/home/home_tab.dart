@@ -91,7 +91,9 @@ class _HomeTabState extends State<HomeTab> {
         Expanded(child: ListView.builder(
           itemBuilder: (context, index)=>EventItem(
           event: EventModel(title: "Meeting for Updating The Development Method", category: CategoryModel.categories[2], description: "description", dateTime: DateTime.now(), timeOfDay: TimeOfDay.now()),
-        ),itemCount: 20,))
+        )
+          ,itemCount: 20,)
+        )
       ],
     );
   }
