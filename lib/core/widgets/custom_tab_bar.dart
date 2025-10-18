@@ -1,7 +1,5 @@
-import 'package:event_app/core/resources/colors_manager.dart';
 import 'package:event_app/core/widgets/custom_tab_item.dart';
-import 'package:event_app/models/catagory_model.dart';
-import 'package:flutter/foundation.dart';
+import 'package:event_app/models/category_model.dart';
 import 'package:flutter/material.dart';
 
 class CustomTabBar extends StatefulWidget {
@@ -10,7 +8,8 @@ class CustomTabBar extends StatefulWidget {
   required this.selectedBgColor,
   required this.unSelectedBgColor,
   required this.selectedFgColor,
-  required this.unSelectedFgColor
+  required this.unSelectedFgColor,
+    this.onCategoryItemClicked
   });
 
 
@@ -20,6 +19,7 @@ class CustomTabBar extends StatefulWidget {
   final Color unSelectedBgColor;
   final Color selectedFgColor;
   final Color unSelectedFgColor;
+  final void Function(CategoryModel category)? onCategoryItemClicked;
 
   @override
   State<CustomTabBar> createState() => _CustomTabBarState();
@@ -35,6 +35,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
 
           indicatorColor: Colors.transparent,
           onTap: (index){
+            widget.onCategoryItemClicked?.call(widget.categories[index]);
             setState(() {
               selectedIndex = index;
             });

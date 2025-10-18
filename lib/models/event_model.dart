@@ -1,4 +1,4 @@
-import 'package:event_app/models/catagory_model.dart';
+import 'package:event_app/models/category_model.dart';
 import 'package:flutter/material.dart';
 
 class EventModel{

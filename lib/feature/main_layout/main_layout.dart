@@ -1,10 +1,10 @@
 import 'package:event_app/core/resources/colors_manager.dart';
+import 'package:event_app/core/routes_manager/app_routes.dart';
 import 'package:event_app/feature/main_layout/favorite/favorite_tab.dart';
 import 'package:event_app/feature/main_layout/home/home_tab.dart';
 import 'package:event_app/feature/main_layout/map/map_tab.dart';
 import 'package:event_app/feature/main_layout/profile/profile_tab.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainLayout extends StatefulWidget {
    const MainLayout({super.key});
@@ -34,8 +34,9 @@ int selectedIndex = 0;
 
   FloatingActionButton _buildFab(){
     return  FloatingActionButton(
-
-      onPressed: (){},
+      onPressed:(){
+        Navigator.pushNamed(context, AppRoutes.createEvent);
+      },
       child: Icon(Icons.add),
     );
   }

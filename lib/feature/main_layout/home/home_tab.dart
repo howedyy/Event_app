@@ -1,12 +1,10 @@
 import 'package:event_app/core/resources/colors_manager.dart';
 import 'package:event_app/core/widgets/custom_tab_bar.dart';
-import 'package:event_app/core/widgets/custom_tab_item.dart';
 import 'package:event_app/core/widgets/event_item.dart';
-import 'package:event_app/models/catagory_model.dart';
+import 'package:event_app/models/category_model.dart';
 import 'package:event_app/models/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});

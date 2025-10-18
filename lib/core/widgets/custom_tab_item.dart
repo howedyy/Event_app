@@ -1,5 +1,4 @@
-import 'package:event_app/core/resources/colors_manager.dart';
-import 'package:event_app/models/catagory_model.dart';
+import 'package:event_app/models/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
