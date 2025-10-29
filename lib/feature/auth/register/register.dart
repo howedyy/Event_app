@@ -1,14 +1,11 @@
 import 'package:event_app/core/resources/assets_manager.dart';
-import 'package:event_app/core/resources/colors_manager.dart';
 import 'package:event_app/core/resources/validators.dart';
 import 'package:event_app/core/routes_manager/app_routes.dart';
-import 'package:event_app/core/routes_manager/router.dart';
 import 'package:event_app/core/widgets/custom_elevated_button.dart';
 import 'package:event_app/core/widgets/custom_text_button.dart';
 import 'package:event_app/core/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -24,7 +21,7 @@ class _RegisterState extends State<Register> {
   late TextEditingController _emailController ;
   late TextEditingController _passwordController ;
   late TextEditingController _rePasswordController ;
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState(){

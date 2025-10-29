@@ -1,8 +1,6 @@
 import 'package:event_app/config/theme/theme_manager.dart';
 import 'package:event_app/core/routes_manager/app_routes.dart';
 import 'package:event_app/core/routes_manager/router.dart';
-import 'package:event_app/feature/auth/login/login.dart';
-import 'package:event_app/feature/auth/register/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -23,7 +21,7 @@ class Evently extends StatelessWidget {
       builder: (context, child)=> MaterialApp(
         debugShowCheckedModeBanner: false,
         onGenerateRoute: RoutesManager.router,
-        initialRoute: AppRoutes.register,
+        initialRoute: AppRoutes.mainLayout,
         theme: ThemeManager.light,
         darkTheme: ThemeManager.dark,
       ),

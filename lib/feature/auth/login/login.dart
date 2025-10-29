@@ -21,7 +21,7 @@ class _LoginState extends State<Login> {
   bool securePassword = true;
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
 
   @override
