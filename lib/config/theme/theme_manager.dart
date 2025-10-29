@@ -136,7 +136,17 @@ class ThemeManager {
         fontSize: 16.sp,
         fontWeight: FontWeight.w500,
         color: ColorsManager.black1C,
-      )
+      ),
+      labelMedium: GoogleFonts.inter(
+          fontSize: 20.sp,
+          fontWeight: FontWeight.bold,
+          color: ColorsManager.black1C
+      ),
+      labelLarge: GoogleFonts.inter(
+          fontSize: 20.sp,
+          fontWeight: FontWeight.bold,
+          color: ColorsManager.blue
+      ),
     ),
 
   );
