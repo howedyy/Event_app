@@ -35,10 +35,19 @@ final List<String> menuItems;
                   ),
                   Spacer(),
                   DropdownButton(
+                    dropdownColor: ColorsManager.white,
+
                     underline: Container(),
                     items: menuItems.map((item)=> DropdownMenuItem(
                         value: item,
-                        child: Text(item))).toList(),
+                        child: Text(item, style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                          color: ColorsManager.black1C
+
+                        ),
+                        )
+                    )).toList(),
                     onChanged: (selectedItem) {
 
                     },

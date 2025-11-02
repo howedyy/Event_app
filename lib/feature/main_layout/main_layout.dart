@@ -6,6 +6,8 @@ import 'package:event_app/feature/main_layout/map/map_tab.dart';
 import 'package:event_app/feature/main_layout/profile/profile_tab.dart';
 import 'package:flutter/material.dart';
 
+import '../../l10n/app_localizations.dart';
+
 class MainLayout extends StatefulWidget {
    const MainLayout({super.key});
 
@@ -21,8 +23,11 @@ List<Widget> tabs = [
   ProfileTab(),
 ];
 int selectedIndex = 0;
-  @override
+late     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+
+@override
   Widget build(BuildContext context) {
+  appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       extendBody: true,
       body: tabs[selectedIndex],
@@ -52,10 +57,10 @@ int selectedIndex = 0;
           onTap: _onTap,
 
           items: [
-            BottomNavigationBarItem(icon: Icon(selectedIndex == 0 ? Icons.home: Icons.home_outlined), label: "Home"),
-            BottomNavigationBarItem(icon: Icon(selectedIndex == 1? Icons.location_on: Icons.location_on_outlined), label: "Map"),
-            BottomNavigationBarItem(icon: Icon(selectedIndex == 2? Icons.favorite: Icons.favorite_outline), label: "Favorite"),
-            BottomNavigationBarItem(icon: Icon(selectedIndex == 3? Icons.person: Icons.person_outline), label: "Profile"),
+            BottomNavigationBarItem(icon: Icon(selectedIndex == 0 ? Icons.home: Icons.home_outlined), label: appLocalizations.home),
+            BottomNavigationBarItem(icon: Icon(selectedIndex == 1? Icons.location_on: Icons.location_on_outlined), label: appLocalizations.map),
+            BottomNavigationBarItem(icon: Icon(selectedIndex == 2? Icons.favorite: Icons.favorite_outline), label: appLocalizations.favorite),
+            BottomNavigationBarItem(icon: Icon(selectedIndex == 3? Icons.person: Icons.person_outline), label: appLocalizations.profile),
           ]
       ),
     );
