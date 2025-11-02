@@ -6,11 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../l10n/app_localizations.dart';
+
 class FavoriteTab extends StatelessWidget {
   const FavoriteTab({super.key});
 
   @override
   Widget build(BuildContext context) {
+    late AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+
     return SafeArea(
       child: Column(
         children: [
@@ -19,7 +23,7 @@ class FavoriteTab extends StatelessWidget {
             child: TextField(
                decoration: InputDecoration(
                  prefixIcon: Icon(Icons.search, color: ColorsManager.blue,),
-                 hintText: "Search For Event",
+                 hintText: appLocalizations.search_for_event,
                hintStyle: GoogleFonts.inter(
                  fontSize: 14.sp,
                  fontWeight: FontWeight.bold,

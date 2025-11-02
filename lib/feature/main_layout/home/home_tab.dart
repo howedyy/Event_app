@@ -1,6 +1,7 @@
 import 'package:event_app/core/resources/colors_manager.dart';
 import 'package:event_app/core/widgets/custom_tab_bar.dart';
 import 'package:event_app/core/widgets/event_item.dart';
+import 'package:event_app/l10n/app_localizations.dart';
 import 'package:event_app/models/category_model.dart';
 import 'package:event_app/models/event_model.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
+  late AppLocalizations appLocalizations = AppLocalizations.of(context)!;
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class _HomeTabState extends State<HomeTab> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Welcome Back ✨",
+                        Text("${appLocalizations.welcome_back}✨",
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         Text("Mohamed Howedy",
@@ -75,10 +77,10 @@ class _HomeTabState extends State<HomeTab> {
                 ),
                 SizedBox(height: 12.h,),
                CustomTabBar(categories: CategoryModel.categoriesWithAll,
-                   selectedBgColor: Theme.of(context).colorScheme.primary,
-                   unSelectedBgColor: Theme.of(context).colorScheme.secondary,
-                   selectedFgColor: Theme.of(context).colorScheme.onPrimary,
-                   unSelectedFgColor: Theme.of(context).colorScheme.onSecondary
+                   selectedBgColor: ColorsManager.whiteBlue,
+                   unSelectedBgColor: Colors.transparent,
+                   selectedFgColor: ColorsManager.blue,
+                   unSelectedFgColor: ColorsManager.whiteBlue,
                ),
 
                 //Expanded(child: ListView.builder(itemBuilder: (context, index)=> ,itemCount: 20,))
