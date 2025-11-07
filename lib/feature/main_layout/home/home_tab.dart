@@ -4,8 +4,10 @@ import 'package:event_app/core/widgets/event_item.dart';
 import 'package:event_app/l10n/app_localizations.dart';
 import 'package:event_app/models/category_model.dart';
 import 'package:event_app/models/event_model.dart';
+import 'package:event_app/providers/config_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -19,6 +21,7 @@ class _HomeTabState extends State<HomeTab> {
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
+    var configProvider = Provider.of<ConfigProvider>(context);
     return Column(
       children: [
         Container(
@@ -59,14 +62,20 @@ class _HomeTabState extends State<HomeTab> {
                       ],
                     ),
                     Spacer(),
-                    IconButton(onPressed: (){}, icon: Icon(Icons.light_mode, color: ColorsManager.white,)),
+                    IconButton(onPressed: (){
+                      configProvider.changeAppTheme(configProvider.isDark ? ThemeMode.light : ThemeMode.dark);
+                    }, icon: Icon(configProvider.isDark? Icons.dark_mode : Icons.light_mode, color: ColorsManager.white,)
+                    ),
                     SizedBox(width: 10.w,),
                     InkWell(
-                      onTap: (){},
+                      onTap: (){
+                        configProvider.changeAppLanguage(configProvider.isEnglish? "ar": "en");
+                      },
                       child: Card(
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text("En",
+                          child: Text(
+                            configProvider.isEnglish?"En":"Ar",
                             style: Theme.of(context).textTheme.headlineMedium,
                           ),
                         ),
