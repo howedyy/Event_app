@@ -5,10 +5,11 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../core/resources/colors_manager.dart';
 
 class CustomDropdownItem extends StatelessWidget {
-  const CustomDropdownItem({super.key, required this.label, required this.selectedLabel, required this.menuItems});
+  const CustomDropdownItem({super.key, required this.label, required this.selectedLabel, required this.menuItems, this.onChange});
 final String label;
 final String selectedLabel;
 final List<String> menuItems;
+final void Function(String?)? onChange;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,9 +49,7 @@ final List<String> menuItems;
                         ),
                         )
                     )).toList(),
-                    onChanged: (selectedItem) {
-
-                    },
+                    onChanged: onChange,
                   )
                 ],
               )

@@ -1,9 +1,11 @@
 import 'package:event_app/core/resources/assets_manager.dart';
 import 'package:event_app/core/resources/colors_manager.dart';
 import 'package:event_app/feature/main_layout/profile/custom_dropdown_item.dart';
+import 'package:event_app/providers/config_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../../l10n/app_localizations.dart';
 
@@ -13,7 +15,7 @@ class ProfileTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late AppLocalizations appLocalizations = AppLocalizations.of(context)!;
-
+    var configProvider = Provider.of<ConfigProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -62,9 +64,20 @@ class ProfileTab extends StatelessWidget {
           ),
         ),
         SizedBox(height: 16.h,),
-        CustomDropdownItem(label: appLocalizations.theme, selectedLabel: appLocalizations.light,menuItems: [appLocalizations.light, appLocalizations.dark],),
+        CustomDropdownItem(label: appLocalizations.theme,
+          selectedLabel: configProvider.isDark? appLocalizations.dark: appLocalizations.light,
+          menuItems: [appLocalizations.light, appLocalizations.dark], onChange:(newTheme){
+          configProvider.changeAppTheme(newTheme == appLocalizations.light? ThemeMode.light : ThemeMode.dark);
+        },),
         SizedBox(height: 16.h,),
-        CustomDropdownItem(label: appLocalizations.language, selectedLabel: "En", menuItems: ["English", "عربي"],),
+        CustomDropdownItem(
+          onChange: (newLanguage){
+            configProvider.changeAppLanguage(newLanguage == "English"? "en":"ar");
+          },
+          label: appLocalizations.language,
+          selectedLabel:configProvider.isEnglish? "English":"Arabic",
+          menuItems: ["English", "Arabic"],
+        ),
 
         Spacer(
           flex: 7,
