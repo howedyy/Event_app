@@ -1,3 +1,4 @@
+import 'package:event_app/core/UI_Utils.dart';
 import 'package:event_app/core/resources/assets_manager.dart';
 import 'package:event_app/core/resources/colors_manager.dart';
 import 'package:event_app/core/resources/validators.dart';
@@ -5,7 +6,10 @@ import 'package:event_app/core/routes_manager/app_routes.dart';
 import 'package:event_app/core/widgets/custom_elevated_button.dart';
 import 'package:event_app/core/widgets/custom_text_button.dart';
 import 'package:event_app/core/widgets/custom_text_form_field.dart';
+import 'package:event_app/firebase/firebase_service.dart';
 import 'package:event_app/l10n/app_localizations.dart';
+import 'package:event_app/models/login_request.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -154,13 +158,26 @@ class _LoginState extends State<Login> {
     );
   }
   void __onTogglePasswordIconClicked(){
+
     setState(() {
       securePassword = !securePassword;
     });
   }
 
-  void _login() {
+  void _login()async {
  if(_formKey.currentState?.validate() == false)return;
-    
+ try{
+   UIUtils.showLoading(context, isDismissible: false);
+   UserCredential userCredential = await FirebaseService.login(LoginRequest(
+       email: _emailController.text, password: _passwordController.text));
+   UIUtils.hideDialog(context);
+   UIUtils.showToastMessage("User Log-in Successfully", Colors.green);
+   Navigator.pushReplacementNamed(context, AppRoutes.mainLayout);
+ }on FirebaseAuthException catch(exception){
+   UIUtils.hideDialog(context);
+   UIUtils.showToastMessage("Invalid Email Or Password", Colors.red);
+ }catch(exception){
+   UIUtils.showToastMessage("Failed To Login", Colors.red);
+ }
   }
 }
