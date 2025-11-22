@@ -2,6 +2,7 @@ import 'package:event_app/core/resources/assets_manager.dart';
 import 'package:event_app/core/resources/colors_manager.dart';
 import 'package:event_app/core/routes_manager/app_routes.dart';
 import 'package:event_app/feature/main_layout/profile/custom_dropdown_item.dart';
+import 'package:event_app/models/user_model.dart';
 import 'package:event_app/providers/config_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -47,14 +48,16 @@ class _ProfileTabState extends State<ProfileTab> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text("Mohamed Howedy", style:
+                      Text(UserModel.currentUser!.name, style:
                       GoogleFonts.inter(
                         fontSize: 24.sp,
                         fontWeight: FontWeight.bold,
                         color: ColorsManager.white,
                       )
                       ),
-                      Text("m.howedy151@icloud.com", style:
+                      Text(
+                       UserModel.currentUser!.email
+                      , style:
                       GoogleFonts.inter(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w500,

@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:event_app/core/UI_Utils.dart';
 import 'package:event_app/core/resources/assets_manager.dart';
 import 'package:event_app/core/resources/colors_manager.dart';
@@ -9,6 +10,7 @@ import 'package:event_app/core/widgets/custom_text_form_field.dart';
 import 'package:event_app/firebase/firebase_service.dart';
 import 'package:event_app/l10n/app_localizations.dart';
 import 'package:event_app/models/login_request.dart';
+import 'package:event_app/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,6 +33,7 @@ class _LoginState extends State<Login> {
 
   @override
   void initState() {
+    super.initState();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
 
@@ -38,6 +41,7 @@ class _LoginState extends State<Login> {
 
   @override
   void dispose() {
+    super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
   }
@@ -165,19 +169,30 @@ class _LoginState extends State<Login> {
   }
 
   void _login()async {
- if(_formKey.currentState?.validate() == false)return;
- try{
-   UIUtils.showLoading(context, isDismissible: false);
-   UserCredential userCredential = await FirebaseService.login(LoginRequest(
-       email: _emailController.text, password: _passwordController.text));
-   UIUtils.hideDialog(context);
-   UIUtils.showToastMessage("User Log-in Successfully", Colors.green);
-   Navigator.pushReplacementNamed(context, AppRoutes.mainLayout);
- }on FirebaseAuthException catch(exception){
-   UIUtils.hideDialog(context);
-   UIUtils.showToastMessage("Invalid Email Or Password", Colors.red);
- }catch(exception){
-   UIUtils.showToastMessage("Failed To Login", Colors.red);
- }
+    if (_formKey.currentState?.validate() == false) return;
+    try {
+      UIUtils.showLoading(context, isDismissible: false);
+      UserCredential userCredential = await FirebaseService.login(
+          LoginRequest(
+              email: _emailController.text,
+              password: _passwordController.text)
+      );
+
+
+      UserModel.currentUser =
+      await FirebaseService.getUserFromFireStore(userCredential.user!.uid);
+
+
+      UIUtils.hideDialog(context);
+      UIUtils.showToastMessage("User Log-in Successfully", Colors.green);
+      Navigator.pushReplacementNamed(context, AppRoutes.mainLayout);
+    } on FirebaseAuthException catch (exception) {
+      UIUtils.hideDialog(context);
+      UIUtils.showToastMessage("Invalid Email Or Password", Colors.red);
+    } catch (exception) {
+      UIUtils.hideDialog(context);
+      print(exception.toString());
+      UIUtils.showToastMessage("Failed To Login", Colors.red);
+    }
   }
-}
+  }

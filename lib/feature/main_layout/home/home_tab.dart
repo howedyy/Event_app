@@ -4,6 +4,7 @@ import 'package:event_app/core/widgets/event_item.dart';
 import 'package:event_app/l10n/app_localizations.dart';
 import 'package:event_app/models/category_model.dart';
 import 'package:event_app/models/event_model.dart';
+import 'package:event_app/models/user_model.dart';
 import 'package:event_app/providers/config_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,7 +48,7 @@ class _HomeTabState extends State<HomeTab> {
                         Text("${appLocalizations.welcome_back}✨",
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
-                        Text("Mohamed Howedy",
+                        Text(UserModel.currentUser!.name,
                           style:Theme.of(context).textTheme.headlineLarge,
                         ),
                         Row(

@@ -7,6 +7,7 @@ import 'package:event_app/core/widgets/custom_text_button.dart';
 import 'package:event_app/core/widgets/custom_text_form_field.dart';
 import 'package:event_app/firebase/firebase_service.dart';
 import 'package:event_app/models/register_request.dart';
+import 'package:event_app/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,7 @@ class _RegisterState extends State<Register> {
 
   @override
   void initState(){
+    super.initState();
     _nameController = TextEditingController();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
@@ -152,7 +154,13 @@ class _RegisterState extends State<Register> {
 
    try {
      UIUtils.showLoading(context,isDismissible: false);
-      UserCredential userCredential = await FirebaseService.register(RegisterRequest(email: _emailController.text, password: _passwordController.text));
+     UserCredential userCredential =
+     await FirebaseService.register(RegisterRequest(
+         email: _emailController.text,
+         password: _passwordController.text));
+     UserModel user =
+     UserModel(id: userCredential.user!.uid, name: _nameController.text, email: _emailController.text);
+     await FirebaseService.addUserToFireStore(user);
      UIUtils.hideDialog(context);
       UIUtils.showToastMessage("Successfully Registration", Colors.green);
       Navigator.pushReplacementNamed(context, AppRoutes.login);
