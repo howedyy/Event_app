@@ -48,10 +48,10 @@ class FavoriteTab extends StatelessWidget {
               EventItem(
                 event: EventModel(
                     title: "Meeting for Updating The Development Method",
-                    category: CategoryModel.categories[2],
+                    category: CategoryModel.getCategories(context)[2],
                     description: "description",
                     dateTime: DateTime.now(),
-                    timeOfDay: TimeOfDay.now()
+                    id: '',
                 ),
               )
 

@@ -27,4 +27,14 @@ abstract class Validator {
     }
     return null;
   }
+
+  static String? validateEventTitle(String? title){
+    if(title == null || title.trim().isEmpty) return "Plz, enter event title";
+    return null;
+  }
+
+  static String? validateEventDescription(String? description){
+    if(description == null || description.trim().isEmpty) return "Plz, enter event description";
+    return null;
+  }
 }

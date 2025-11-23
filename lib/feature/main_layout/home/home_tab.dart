@@ -86,7 +86,7 @@ class _HomeTabState extends State<HomeTab> {
                   ],
                 ),
                 SizedBox(height: 12.h,),
-               CustomTabBar(categories: CategoryModel.categoriesWithAll,
+               CustomTabBar(categories: CategoryModel.getCategoriesWithAll(context),
                    selectedBgColor: ColorsManager.whiteBlue,
                    unSelectedBgColor: Colors.transparent,
                    selectedFgColor: ColorsManager.blue,
@@ -100,7 +100,13 @@ class _HomeTabState extends State<HomeTab> {
         ),
         Expanded(child: ListView.builder(
           itemBuilder: (context, index)=>EventItem(
-          event: EventModel(title: "Meeting for Updating The Development Method", category: CategoryModel.categories[2], description: "description", dateTime: DateTime.now(), timeOfDay: TimeOfDay.now()),
+          event: EventModel(
+            title: "Meeting for Updating The Development Method",
+            category: CategoryModel.getCategories(context)[2],
+            description: "description",
+            dateTime: DateTime.now(),
+            id: '',
+          ),
         )
           ,itemCount: 20,)
         )
