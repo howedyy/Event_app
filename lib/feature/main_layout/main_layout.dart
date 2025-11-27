@@ -4,7 +4,9 @@ import 'package:event_app/feature/main_layout/favorite/favorite_tab.dart';
 import 'package:event_app/feature/main_layout/home/home_tab.dart';
 import 'package:event_app/feature/main_layout/map/map_tab.dart';
 import 'package:event_app/feature/main_layout/profile/profile_tab.dart';
+import 'package:event_app/providers/map_tab_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../l10n/app_localizations.dart';
 
@@ -18,7 +20,10 @@ class MainLayout extends StatefulWidget {
 class _MainLayoutState extends State<MainLayout> {
 List<Widget> tabs = [
   HomeTab(),
-  MapTab(),
+  ChangeNotifierProvider(
+      create: (context) => MapTabProvider(),
+      child: MapTab(),
+  ),
   FavoriteTab(),
   ProfileTab(),
 ];
